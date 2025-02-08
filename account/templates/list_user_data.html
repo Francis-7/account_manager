@@ -38,14 +38,12 @@
                     </tr>
                 </tfoot>
             </table>
-            <div>
-                <footer>
-                    <div>
-                        <a href="{% url 'create_entry' userdata.pk %}"
-                           class="btn btn-success btn-lg">Add Record</a>
-                    </div>
-                </footer>
-            </div>
+            <footer>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4 p-3 sticky-bottom">
+                    <a href="{% url 'create_entry' userdata.pk %}"
+                       class="btn btn-success btn-lg">Add Record</a>
+                </div>
+            </footer>
         {% else %}
             <h1 class="display-3 text-warning">{{ userdata.first_name }} {{ userdata.last_name }} has no records yet</h1>
             <a href="{% url 'create_entry' userdata.pk %}"
