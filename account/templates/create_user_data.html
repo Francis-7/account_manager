@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Create Data for {{ useraccount.name }}
+{% endblock title %}
+{% block content %}
+    <div class="container text-center mb-4">
+        <h1 class="display-4 text-primary">Add User Data for {{ useraccount.name }}</h1>
+        <hr>
+    </div>
+    <div class="container text-center content-justify-start">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success btn-lg" type="submit">Add</button>
+        </form>
+    </div>
+{% endblock content %}

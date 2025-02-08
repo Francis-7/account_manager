@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    The Record Book
+{% endblock title %}
+{% block content %}
+    <div class="text-center">
+        <h1 class="display-4 fs-bolder text-primary mb-3">Available Records</h1>
+    </div>
+    {% if useraccount %}
+        <div class="container text-center">
+            <div class="row row-cols-2 row-cols-lg-4  g-2 g-lg-3">
+                {% for account in useraccount %}
+                    <div class="col col-md-6">
+                        <div class="card shadow bg-body rounded">
+                            <div class="card-header bg-success text-light">
+                                <strong>({{ forloop.counter }}) - {{ account.date_opened }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <a href="{% url 'list_user_account' account.pk %}" class="btn">
+                                    <h1 class="card-text">{{ account.name }}</h1>
+                                </a>
+                            </div>
+                            <div class="card-footer bg-success">
+                                <a href="{% url 'delete_user_account' account.pk %}"
+                                   class="btn btn-danger">Delete</a> - <a href="{% url 'update_user_account' account.pk %}"
+    class="btn btn-info">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center my-4 p-3 sticky-bottom">
+            <a href="{% url 'create_user_account' %}" class="btn btn-dark btn-lg"><strong>Add account</strong></a>
+        </div>
+    {% else %}
+        <p class="fs-2">
+            No accounts found <a href="{% url 'create_user_account' %}"><strong>Create account</strong></a>
+        </p>
+    {% endif %}
+{% endblock content %}

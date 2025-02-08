@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Add Records for {{ userdata.first_name }} {{ userdata.last_name }}
+{% endblock title %}
+{% block content %}
+    <div class="container text-center  mb-4 p-2">
+        <hi class="display-4 text-primary">Add Record for {{ userdata.first_name }} {{ userdata.last_name }}</hi>
+        <hr>
+    </div>
+    <div class="container text-center">
+        <form method="post" class="jumbotrun">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Delete {{ user_data.first_name }} {{ user_data.last_name }}
+{% endblock title %}
+{% block content %}
+    <div class="container text-center">
+        <h1 class="display-4 text-warning my-2">Delete {{ user_data.first_name }} - {{ user_data.last_name }}?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes</button>
+            <a href="{% url 'list_user_account' user_data.useraccount.pk %}"
+               class="btn btn-primary">No</a>
+        </form>
+    </div>
+{% endblock content %}

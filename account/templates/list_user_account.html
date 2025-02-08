@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ user_account.name }}
+{% endblock title %}
+{% block content %}
+    <div class="container text-center">
+        {% if entries %}
+            <h1 class="display-4 text-primary my-2">
+                List for the <strong><em>{{ user_account.name }}</em></strong> record
+            </h1>
+            <table class="table table-dark table-striped-columns table-bordered border-light table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for entry in entries %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>
+                                <a href="{% url 'list_user_data' entry.pk %}" class="btn text-light">{{ entry.first_name }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'list_user_data' entry.pk %}" class="btn text-light">{{ entry.last_name }}</a>
+                            </td>
+                            <td>{{ entry.email }}</td>
+                            <td>{{ entry.phone }}</td>
+                            <td>
+                                <a href="{% url 'update_user_data' entry.pk %}" class="btn btn-info">update</a> - <a href="{% url 'delete_user_data' entry.pk %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="row">Total</th>
+                        <th scope="colgroup">{{ count }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div>
+                <footer>
+                    <div>
+                        <a href="{% url 'create_user_data' user_account.pk %}"
+                           class="btn btn-success">Add Record</a>
+                    </div>
+                </footer>
+            </div>
+        {% else %}
+            <h1 class="display-4 text-warning">
+                <strong>No record for {{ user_account.name }} was found.</strong>
+                <div>
+                    <a href="{% url 'create_user_data' user_account.pk %}"
+                       class="btn btn-info btn-outline-success btn-lg">Add Record</a>
+                </div>
+            </h1>
+        {% endif %}
+    </div>
+{% endblock content %}
