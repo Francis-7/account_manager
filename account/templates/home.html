@@ -21,9 +21,28 @@
                                 </a>
                             </div>
                             <div class="card-footer bg-success">
-                                <a href="{% url 'delete_user_account' account.pk %}"
-                                   class="btn btn-danger">Delete</a> - <a href="{% url 'update_user_account' account.pk %}"
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne"
+                                                    aria-expanded="true"
+                                                    aria-controls="collapseOne">Actions</button>
+                                        </h2>
+                                        <div id="collapseOne"
+                                             class="accordion-collapse collapse show"
+                                             aria-labelledby="headingOne"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <a href="{% url 'delete_user_account' account.pk %}"
+                                                   class="btn btn-danger">Delete</a> - <a href="{% url 'update_user_account' account.pk %}"
     class="btn btn-info">Update</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
