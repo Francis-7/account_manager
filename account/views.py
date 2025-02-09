@@ -26,10 +26,10 @@ def update_user_account(request, pk):
         form = UserAccountForm(request.POST, instance=useraccount)
         if form.is_valid():
             form.save()
-            return redirect('list_user_account', pk)
+            return redirect('home')
     else:
         form = UserAccountForm(instance=useraccount)
-    return render(request, 'update_user_account.html', {'form' : form})
+    return render(request, 'update_user_account.html', {'form' : form, 'useraccount' : useraccount})
 
 # delete a user account 
 def delete_user_account(request, pk):
